@@ -12,9 +12,13 @@ public class DocumentManager {
 	public void expireRefusedDocuments(){
 		List<Document> currents = documentDao.findCurrents();
 		for(Document document : currents){
-			if("Refused".equals(document.getStatus())){
-				document.setExpired(true);
-				documentDao.update(document);
+			try{
+				if("Refused".equals(document.getStatus())){
+					document.setExpired(true);
+					documentDao.update(document);
+				}
+			}catch(Exception e){
+				System.out.println("Error when trying to update the document");
 			}
 		}
 	}

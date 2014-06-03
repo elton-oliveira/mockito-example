@@ -7,6 +7,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.doThrow;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +36,6 @@ public class DocumentManagerTest {
 		
 		assertThat(doc1.isExpired(), equalTo(true));
 		assertThat(doc2.isExpired(), equalTo(false));
-		
 	}
 	
 	@Test
@@ -56,7 +56,27 @@ public class DocumentManagerTest {
 		//Verifies that the dao update method was invoked
 		verify(dao, times(1)).update(doc1);
 		verify(dao, never()).update(doc2);
+	}
+	
+	@Test
+	public void shouldContinueRunningEvenWhenTheDaoFailure() {
+		Document doc1 = new Document("Refused");
+		Document doc2 = new Document("Refused");
+		List<Document> currents = Arrays.asList(doc1, doc2);
 		
+		//Simulates the database
+		IDocumentDao dao = mock(IDocumentDao.class);
+		when(dao.findCurrents()).thenReturn(currents);
+		//Throws exception when trying to update the doc1
+		doThrow(new RuntimeException()).when(dao).update(doc1);
+		
+		DocumentManager manager = new DocumentManager();
+		manager.setDocumentDao(dao);
+		
+		manager.expireRefusedDocuments();
+		
+		//Verifies that the dao update method was invoked with doc2
+		verify(dao, times(1)).update(doc2);
 	}
 
 }
