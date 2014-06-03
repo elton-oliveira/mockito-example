@@ -22,8 +22,8 @@ public class DocumentManagerTest {
 		Document doc2 = new Document("Sent");
 		List<Document> currents = Arrays.asList(doc1, doc2);
 		
+		//Simulates the database
 		IDocumentDao dao = mock(IDocumentDao.class);
-		
 		when(dao.findCurrents()).thenReturn(currents);
 		
 		DocumentManager manager = new DocumentManager();
