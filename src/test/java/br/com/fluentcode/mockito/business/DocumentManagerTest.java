@@ -1,4 +1,4 @@
-package br.com.fluentcode.mockexample.business;
+package br.com.fluentcode.mockito.business;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
