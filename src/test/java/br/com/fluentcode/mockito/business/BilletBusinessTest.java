@@ -17,7 +17,7 @@ import br.com.fluentcode.mockito.dao.IDocumentDao;
 import br.com.fluentcode.mockito.entity.Billet;
 import br.com.fluentcode.mockito.entity.Document;
 
-public class BilletManagerTest {
+public class BilletBusinessTest {
 
 	@Test
 	public void shoudGenerateBilletWithGreaterPremium() {
@@ -32,7 +32,7 @@ public class BilletManagerTest {
 		//Simulates the database
 		IBilletDao billetDao = mock(IBilletDao.class);
 		
-		BilletManager manager = new BilletManager();
+		BilletBusiness manager = new BilletBusiness();
 		manager.setDocumentDao(documentDao);
 		manager.setBilletDao(billetDao);
 		

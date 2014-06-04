@@ -17,7 +17,7 @@ import org.junit.Test;
 import br.com.fluentcode.mockito.dao.IDocumentDao;
 import br.com.fluentcode.mockito.entity.Document;
 
-public class DocumentManagerTest {
+public class DocumentBusinessTest {
 
 	@Test
 	public void shouldExpireRefusedDocuments() {
@@ -29,7 +29,7 @@ public class DocumentManagerTest {
 		IDocumentDao dao = mock(IDocumentDao.class);
 		when(dao.findCurrents()).thenReturn(currents);
 		
-		DocumentManager manager = new DocumentManager();
+		DocumentBusiness manager = new DocumentBusiness();
 		manager.setDocumentDao(dao);
 		
 		manager.expireRefusedDocuments();
@@ -48,7 +48,7 @@ public class DocumentManagerTest {
 		IDocumentDao dao = mock(IDocumentDao.class);
 		when(dao.findCurrents()).thenReturn(currents);
 		
-		DocumentManager manager = new DocumentManager();
+		DocumentBusiness manager = new DocumentBusiness();
 		manager.setDocumentDao(dao);
 		
 		manager.expireRefusedDocuments();
@@ -70,7 +70,7 @@ public class DocumentManagerTest {
 		//Throws exception when trying to update the doc1
 		doThrow(new RuntimeException()).when(dao).update(doc1);
 		
-		DocumentManager manager = new DocumentManager();
+		DocumentBusiness manager = new DocumentBusiness();
 		manager.setDocumentDao(dao);
 		
 		manager.expireRefusedDocuments();

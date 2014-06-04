@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.fluentcode.mockito.dao.IDocumentDao;
 import br.com.fluentcode.mockito.entity.Document;
 
-public class DocumentManager {
+public class DocumentBusiness {
 	
 	private IDocumentDao documentDao;
 	

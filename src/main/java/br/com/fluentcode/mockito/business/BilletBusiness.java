@@ -7,7 +7,7 @@ import br.com.fluentcode.mockito.dao.IDocumentDao;
 import br.com.fluentcode.mockito.entity.Billet;
 import br.com.fluentcode.mockito.entity.Document;
 
-public class BilletManager {
+public class BilletBusiness {
 	
 	private IDocumentDao documentDao;
 	private IBilletDao billetDao;
