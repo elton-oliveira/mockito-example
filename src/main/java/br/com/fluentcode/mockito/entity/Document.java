@@ -6,11 +6,17 @@ public class Document {
 	
 	private String status;
 	
+	private double premium;
+	
 	public Document() {
 	}
 
 	public Document(String status) {
 		this.status = status;
+	}
+	
+	public Document(double premium) {
+		this.premium = premium;
 	}
 
 	public boolean isExpired() {
@@ -27,6 +33,14 @@ public class Document {
 	
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	public double getPremium() {
+		return premium;
+	}
+	
+	public void setPremium(double premium) {
+		this.premium = premium;
 	}
 	
 }
