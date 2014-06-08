@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.fluentcode.mockito.entity.Document;
 
-public interface IDocumentDao {
+public interface IDocumentDAO {
 
 	List<Document> findCurrents();
 

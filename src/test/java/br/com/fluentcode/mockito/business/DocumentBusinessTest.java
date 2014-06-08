@@ -14,7 +14,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import br.com.fluentcode.mockito.dao.IDocumentDao;
+import br.com.fluentcode.mockito.dao.IDocumentDAO;
 import br.com.fluentcode.mockito.entity.Document;
 
 public class DocumentBusinessTest {
@@ -26,11 +26,11 @@ public class DocumentBusinessTest {
 		List<Document> currents = Arrays.asList(doc1, doc2);
 		
 		//Simulates the database
-		IDocumentDao dao = mock(IDocumentDao.class);
+		IDocumentDAO dao = mock(IDocumentDAO.class);
 		when(dao.findCurrents()).thenReturn(currents);
 		
 		DocumentBusiness manager = new DocumentBusiness();
-		manager.setDocumentDao(dao);
+		manager.setDocumentDAO(dao);
 		
 		manager.expireRefusedDocuments();
 		
@@ -45,11 +45,11 @@ public class DocumentBusinessTest {
 		List<Document> currents = Arrays.asList(doc1, doc2);
 		
 		//Simulates the database
-		IDocumentDao dao = mock(IDocumentDao.class);
+		IDocumentDAO dao = mock(IDocumentDAO.class);
 		when(dao.findCurrents()).thenReturn(currents);
 		
 		DocumentBusiness manager = new DocumentBusiness();
-		manager.setDocumentDao(dao);
+		manager.setDocumentDAO(dao);
 		
 		manager.expireRefusedDocuments();
 		
@@ -65,13 +65,13 @@ public class DocumentBusinessTest {
 		List<Document> currents = Arrays.asList(doc1, doc2);
 		
 		//Simulates the database
-		IDocumentDao dao = mock(IDocumentDao.class);
+		IDocumentDAO dao = mock(IDocumentDAO.class);
 		when(dao.findCurrents()).thenReturn(currents);
 		//Throws exception when trying to update the doc1
 		doThrow(new RuntimeException()).when(dao).update(doc1);
 		
 		DocumentBusiness manager = new DocumentBusiness();
-		manager.setDocumentDao(dao);
+		manager.setDocumentDAO(dao);
 		
 		manager.expireRefusedDocuments();
 		

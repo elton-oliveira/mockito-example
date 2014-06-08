@@ -12,8 +12,8 @@ import java.util.List;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
-import br.com.fluentcode.mockito.dao.IBilletDao;
-import br.com.fluentcode.mockito.dao.IDocumentDao;
+import br.com.fluentcode.mockito.dao.IBilletDAO;
+import br.com.fluentcode.mockito.dao.IDocumentDAO;
 import br.com.fluentcode.mockito.entity.Billet;
 import br.com.fluentcode.mockito.entity.Document;
 
@@ -26,22 +26,22 @@ public class BilletBusinessTest {
 		List<Document> currents = Arrays.asList(doc1, doc2);
 		
 		//Simulates the database
-		IDocumentDao documentDao = mock(IDocumentDao.class);
-		when(documentDao.findCurrents()).thenReturn(currents);
+		IDocumentDAO documentDAO = mock(IDocumentDAO.class);
+		when(documentDAO.findCurrents()).thenReturn(currents);
 		
 		//Simulates the database
-		IBilletDao billetDao = mock(IBilletDao.class);
+		IBilletDAO billetDAO = mock(IBilletDAO.class);
 		
 		BilletBusiness manager = new BilletBusiness();
-		manager.setDocumentDao(documentDao);
-		manager.setBilletDao(billetDao);
+		manager.setDocumentDAO(documentDAO);
+		manager.setBilletDAO(billetDAO);
 		
 		manager.generateBilletWithGreaterPremium();
 		
 		//Creates ArgumentCaptor that knows capturing a Billet
 		ArgumentCaptor<Billet> argument = ArgumentCaptor.forClass(Billet.class);
 		//Captures the billet that was passed to the save method
-		verify(billetDao).save(argument.capture());
+		verify(billetDAO).save(argument.capture());
 		Billet generatedBillet = argument.getValue();
 		
 		assertThat(generatedBillet.getAmountPayable(), equalTo(2500.43));
